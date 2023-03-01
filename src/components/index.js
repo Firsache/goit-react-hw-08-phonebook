@@ -1,4 +1,5 @@
 export * from 'components/Layout/Layout.jsx';
+export * from 'components/Layout/Header.jsx';
 export * from 'components/ContactForm/ContactForm.jsx';
 export * from 'components/Filter/Filter';
 export * from 'components/Section/Section';

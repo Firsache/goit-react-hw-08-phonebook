@@ -6,7 +6,7 @@ import {
   Span,
 } from 'components/ContactForm/ContactForm.styled';
 import { useState } from 'react';
-import { Container } from 'components/App/App.styled';
+import { Container } from 'common/common.styled';
 
 const SignUpForm = () => {
   //   const dispatch = useDispatch();

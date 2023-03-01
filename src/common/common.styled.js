@@ -9,7 +9,7 @@ export const Container = styled.div`
   max-width: 550px;
   overflow: hidden;
   box-shadow: 6px 6px 4px 0px ${p => p.theme.colors.shadow},
-    -4px -4px 4px ${p => p.theme.colors.shadow}; ;
+    -4px -4px 4px ${p => p.theme.colors.shadow};
 `;
 
 export const Title = styled.h2`

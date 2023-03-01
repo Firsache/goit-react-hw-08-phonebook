@@ -10,7 +10,7 @@ import { Button } from 'components/ContactForm/ContactForm.styled';
 import { List, Item, Text } from './Contacts.styled';
 import { useEffect } from 'react';
 import { getContacts, delContacts } from 'redux/contacts/operations';
-import { Container } from 'components/App/App.styled';
+import { Container } from 'common/common.styled';
 
 const ContactsPage = () => {
   const contacts = useSelector(selectContacts);
