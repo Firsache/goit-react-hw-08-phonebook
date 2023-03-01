@@ -8,9 +8,15 @@ import { addContacts } from 'redux/contacts/operations';
 import { selectContacts } from 'redux/contacts/selectors';
 
 import { Section } from 'components/Section/Section';
-import { FormComponent, Label, Span, Input, Button } from './Form.styled';
+import {
+  FormComponent,
+  Label,
+  Span,
+  Input,
+  Button,
+} from './ContactForm.styled';
 
-export function Form() {
+export function ContactForm() {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContacts);
 

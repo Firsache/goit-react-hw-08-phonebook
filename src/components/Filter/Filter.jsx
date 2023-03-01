@@ -4,7 +4,7 @@ import { BsSearch } from 'react-icons/bs';
 import { selectFilteredName } from 'redux/contacts/selectors';
 import { setFilteredName } from 'redux/contacts/contactsSlice';
 
-import { Label, Span, Input } from 'components/Form/Form.styled';
+import { Label, Span, Input } from 'components/ContactForm/ContactForm.styled';
 
 export function Filter() {
   const filteredName = useSelector(selectFilteredName);
