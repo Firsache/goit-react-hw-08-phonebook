@@ -1,13 +1,13 @@
 import { BsEnvelope, BsPersonPlus, BsKey } from 'react-icons/bs';
-import { Section } from 'components';
+
 import {
   Button,
-  FormComponent,
   Input,
   Label,
   Span,
 } from 'components/ContactForm/ContactForm.styled';
 import { useState } from 'react';
+import { Box } from 'components';
 
 const SignInForm = () => {
   //   const dispatch = useDispatch();
@@ -33,8 +33,14 @@ const SignInForm = () => {
   };
 
   return (
-    <Section titlePosition="end" title="Add contacts">
-      <FormComponent onSubmit={handleSubmit}>
+    <Box
+      mt={32}
+      width="100%"
+      display="flex"
+      flexDirection="column"
+      alignItems="center"
+    >
+      <form onSubmit={handleSubmit}>
         <Label>
           <Span>Name</Span>
           <BsPersonPlus size={15} className="icon" />
@@ -71,8 +77,8 @@ const SignInForm = () => {
           />
         </Label>
         <Button type="submit">Add contact</Button>
-      </FormComponent>
-    </Section>
+      </form>
+    </Box>
   );
 };
 export default SignInForm;
