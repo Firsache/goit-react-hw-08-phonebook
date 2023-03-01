@@ -21,23 +21,30 @@ export const Layout = () => {
       <Box as="section">
         <Box
           position="relative"
+          display="flex"
+          justifyContent="space-between"
+          alignItems="center"
           py={4}
+          px={16}
+          m="0 auto"
           bg={normalizedTheme.colors.accent}
           as="div"
         >
-          <Box
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            color={normalizedTheme.colors.white}
-            as="div"
-          >
-            <Link to={routes.HOME}>
+          <Link to={routes.HOME}>
+            <Box
+              display="flex"
+              alignItems="center"
+              justifyContent="center"
+              color={normalizedTheme.colors.white}
+              as="div"
+            >
               <MdContactPhone size={35} />
               <Title>Phonebook</Title>
-            </Link>
-          </Box>
+            </Box>
+          </Link>
+
           <nav>
+            <NavLink to={routes.CONTACTS}>Contacts</NavLink>
             <NavLink to={routes.LOGIN}>Sign In</NavLink>
             <NavLink to={routes.REGISTER}>Sign Up</NavLink>
           </nav>
