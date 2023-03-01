@@ -7,7 +7,7 @@ import {
   Span,
 } from 'components/ContactForm/ContactForm.styled';
 import { useState } from 'react';
-import { Box } from 'components';
+import { Container } from 'components/App/App.styled';
 
 const SignInForm = () => {
   //   const dispatch = useDispatch();
@@ -33,13 +33,7 @@ const SignInForm = () => {
   };
 
   return (
-    <Box
-      mt={32}
-      width="100%"
-      display="flex"
-      flexDirection="column"
-      alignItems="center"
-    >
+    <Container>
       <form onSubmit={handleSubmit}>
         <Label>
           <Span>Name</Span>
@@ -78,7 +72,7 @@ const SignInForm = () => {
         </Label>
         <Button type="submit">Add contact</Button>
       </form>
-    </Box>
+    </Container>
   );
 };
 export default SignInForm;
