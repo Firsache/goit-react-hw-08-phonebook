@@ -13,21 +13,21 @@ import {
 
 import { contactsReducer } from './contacts/contactsSlice';
 import { globalReducer } from './global/globalSlice';
-
-// const persistedContactsReducer = persistReducer(
-//   { key: 'contacts', storage, whitelist: ['contacts'] },
-//   contactsReducer
-// );
+import { authReducer } from './auth/authSlice';
 
 const persistedThemeReducer = persistReducer(
   { key: 'theme', storage },
   globalReducer
 );
+const persistedAuthReducer = persistReducer(
+  { key: 'auth', storage, whitelist: ['token'] },
+  authReducer
+);
 
 const rootReducer = combineReducers({
-  // contacts: persistedContactsReducer,
   contacts: contactsReducer,
   global: persistedThemeReducer,
+  auth: persistedAuthReducer,
 });
 
 export const store = configureStore({
