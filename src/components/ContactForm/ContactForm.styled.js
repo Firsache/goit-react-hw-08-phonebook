@@ -27,7 +27,7 @@ export const Span = styled.span`
 `;
 export const Input = styled.input`
   padding: ${p => p.theme.space[2]}px;
-  padding-left: 26px;
+  padding-left: 30px;
   width: 250px;
 
   color: ${p => p.theme.colors.text};
@@ -77,6 +77,50 @@ export const Button = styled.button`
   &:focus {
     background-color: transparent;
     color: ${p => p.theme.colors.text};
+    transform: translateY(-2px);
+  }
+
+  /* .secondary {
+    background-color: ${p => p.theme.colors.white};
+    color: ${p => p.theme.colors.black};
+    border: ${p => p.theme.space[1]}px solid ${p => p.theme.colors.accent};
+    transition: background-color ${p => p.theme.transition},
+      color ${p => p.theme.transition}, transform ${p => p.theme.transition};
+
+    &:hover,
+    &:focus {
+      background-color: ${p => p.theme.colors.accent};
+      color: ${p => p.theme.colors.white};
+      transform: translateY(-2px);
+    }
+  } */
+`;
+export const ButtonSecondary = styled.button`
+  padding: ${p => p.theme.space[3]}px ${p => p.theme.space[2]}px;
+  width: 120px;
+  height: ${p => p.theme.space[5]}px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: ${p => p.theme.fontSizes.m};
+  line-height: ${p => p.theme.lineHeights.body}px;
+  text-align: center;
+
+  background-color: ${p => p.theme.colors.white};
+  color: ${p => p.theme.colors.black};
+  border-radius: ${p => p.theme.space[2]}px;
+  border: ${p => p.theme.space[1]}px solid ${p => p.theme.colors.accent};
+  outline: none;
+
+  transition: background-color ${p => p.theme.transition},
+    color ${p => p.theme.transition}, transform ${p => p.theme.transition};
+
+  &:hover,
+  &:focus {
+    background-color: ${p => p.theme.colors.accent};
+    color: ${p => p.theme.colors.white};
     transform: translateY(-2px);
   }
 `;
