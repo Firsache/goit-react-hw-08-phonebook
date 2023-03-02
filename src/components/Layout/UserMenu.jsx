@@ -11,6 +11,7 @@ export const UserMenu = () => {
   const avatar = defaultPicture;
 
   const handleLogOutClick = () => {
+    // console.log('click');
     dispatch(logOut());
   };
 
