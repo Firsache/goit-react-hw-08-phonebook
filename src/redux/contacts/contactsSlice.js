@@ -3,12 +3,14 @@ import {
   getContacts,
   addContacts,
   delContacts,
+  editContactOperation,
 } from 'redux/contacts/operations';
 
 const initialContactsState = {
   contacts: [],
   filteredName: '',
   showModal: false,
+  editContact: null,
 };
 
 const contactsSlice = createSlice({
@@ -20,6 +22,9 @@ const contactsSlice = createSlice({
     },
     setEditModal(state) {
       state.showModal = !state.showModal;
+    },
+    setEditContact(state, { payload }) {
+      state.editContact = payload;
     },
   },
   extraReducers: builder => {
@@ -34,9 +39,14 @@ const contactsSlice = createSlice({
         state.contacts = state.contacts.filter(
           contact => contact.id !== payload
         );
+      })
+      .addCase(editContactOperation.fulfilled, (state, { payload }) => {
+        const newUser = { name: payload.name, number: payload.number };
+        state.contacts = [...state.contacts, newUser];
       });
   },
 });
 
-export const { setFilteredName, setEditModal } = contactsSlice.actions;
+export const { setFilteredName, setEditModal, setEditContact } =
+  contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
