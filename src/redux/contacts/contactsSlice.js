@@ -8,6 +8,7 @@ import {
 const initialContactsState = {
   contacts: [],
   filteredName: '',
+  showModal: false,
 };
 
 const contactsSlice = createSlice({
@@ -16,6 +17,9 @@ const contactsSlice = createSlice({
   reducers: {
     setFilteredName(state, { payload }) {
       state.filteredName = payload;
+    },
+    setEditModal(state) {
+      state.showModal = !state.showModal;
     },
   },
   extraReducers: builder => {
@@ -34,5 +38,5 @@ const contactsSlice = createSlice({
   },
 });
 
-export const { setFilteredName } = contactsSlice.actions;
+export const { setFilteredName, setEditModal } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;
