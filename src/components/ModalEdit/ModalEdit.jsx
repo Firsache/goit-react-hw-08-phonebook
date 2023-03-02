@@ -1,7 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
+import { useEffect, useState } from 'react';
 
 import { BsPersonPlus, BsTelephonePlus, BsX } from 'react-icons/bs';
+
+import { editContactOperation } from 'redux/contacts/operations';
+import { setEditModal } from 'redux/contacts/contactsSlice';
+
+import { selectEditContact } from 'redux/contacts/selectors';
+import { Backdrop, Modal, CloseBtn } from './ModalEdit.styled';
 import {
   FormComponent,
   Input,
@@ -9,12 +16,6 @@ import {
   Span,
   Button,
 } from 'components/ContactForm/ContactForm.styled';
-import { useEffect, useState } from 'react';
-
-import { setEditModal } from 'redux/contacts/contactsSlice';
-import { selectEditContact } from 'redux/contacts/selectors';
-import { editContactOperation } from 'redux/contacts/operations';
-import { Backdrop, Modal, CloseBtn } from './ModalEdit.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
