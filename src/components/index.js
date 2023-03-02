@@ -8,3 +8,4 @@ export * from 'components/Notification/Notification';
 export * from 'components/ThemeSwitcher/ThemeSwitcher.jsx';
 export * from 'components/Box/Box.jsx';
 export * from 'components/Loader/Loader.jsx';
+export * from 'components/ModalEdit/ModalEdit.jsx';
