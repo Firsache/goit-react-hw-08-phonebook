@@ -23,11 +23,14 @@ import {
   Notification,
   Section,
 } from 'components';
-import { Button } from 'components/ContactForm/ContactForm.styled';
+import {
+  Button,
+  ButtonSecondary,
+} from 'components/ContactForm/ContactForm.styled';
 
-import { List, Item, Text } from './Contacts.styled';
+import { List, Item, Text, ButtonsContainer } from './Contacts.styled';
 import { Container } from 'common/common.styled';
-import { setEditModal } from 'redux/contacts/contactsSlice';
+import { setEditContact, setEditModal } from 'redux/contacts/contactsSlice';
 
 const ContactsPage = () => {
   const contacts = useSelector(selectContacts);
@@ -51,7 +54,8 @@ const ContactsPage = () => {
       c.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
-  const toggleModal = () => {
+  const toggleModal = contactId => {
+    dispatch(setEditContact(contactId));
     dispatch(setEditModal());
   };
 
@@ -69,20 +73,23 @@ const ContactsPage = () => {
                 <Text>
                   {name}: <span>{number}</span>
                 </Text>
-                <Button
-                  onClick={() => {
-                    toggleModal();
-                  }}
-                >
-                  Edit
-                </Button>
-                <Button
-                  onClick={() => {
-                    deleteSelectedContact(id);
-                  }}
-                >
-                  Delete
-                </Button>
+
+                <ButtonsContainer>
+                  <ButtonSecondary
+                    onClick={() => {
+                      toggleModal(id);
+                    }}
+                  >
+                    Edit
+                  </ButtonSecondary>
+                  <Button
+                    onClick={() => {
+                      deleteSelectedContact(id);
+                    }}
+                  >
+                    Delete
+                  </Button>
+                </ButtonsContainer>
               </Item>
             ))}
           </List>
