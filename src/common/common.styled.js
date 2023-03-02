@@ -6,7 +6,7 @@ export const Container = styled.div`
   position: relative;
 
   min-width: 400px;
-  max-width: 550px;
+  max-width: 700px;
   overflow: hidden;
   box-shadow: 6px 6px 4px 0px ${p => p.theme.colors.shadow},
     -4px -4px 4px ${p => p.theme.colors.shadow};
