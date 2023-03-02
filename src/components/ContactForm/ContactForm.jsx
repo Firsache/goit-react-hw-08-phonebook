@@ -21,13 +21,13 @@ export function ContactForm() {
   const contacts = useSelector(selectContacts);
 
   const [name, setName] = useState('');
-  const [phone, setPhone] = useState('');
+  const [number, setNumber] = useState('');
 
   const handleInputChange = evt => {
     const { name, value } = evt.target;
 
     if (name === 'name') setName(value);
-    if (name === 'phone') setPhone(value);
+    if (name === 'number') setNumber(value);
   };
 
   const handleSubmit = evt => {
@@ -39,16 +39,16 @@ export function ContactForm() {
       });
       return;
     }
-    if (contacts.some(c => c.phone === phone)) {
-      toast.error(`Contact ${phone} already exists!`, {
+    if (contacts.some(c => c.number === number)) {
+      toast.error(`Contact ${number} already exists!`, {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
     }
-    dispatch(addContacts({ name: name.trim(), phone }));
+    dispatch(addContacts({ name: name.trim(), number }));
 
     setName('');
-    setPhone('');
+    setNumber('');
   };
 
   return (
@@ -72,11 +72,11 @@ export function ContactForm() {
           <BsTelephonePlus size={15} className="icon" />
           <Input
             type="tel"
-            name="phone"
+            name="number"
             pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
-            value={phone}
+            value={number}
             onChange={handleInputChange}
           />
         </Label>
