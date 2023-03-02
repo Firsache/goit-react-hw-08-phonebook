@@ -3,8 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { BsEnvelope, BsPersonPlus, BsKey } from 'react-icons/bs';
 
+import { Loader } from 'components';
 import { routes } from 'helpers/routes';
 import { selectedIsLoggedIn } from 'redux/auth/selectors';
+import { selectError, selectLoader } from 'redux/contacts/selectors';
 import { register } from 'redux/auth/auth-operations';
 
 import { Container } from 'common/common.styled';
@@ -21,6 +23,8 @@ const RegisterForm = () => {
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectedIsLoggedIn);
+  const error = useSelector(selectError);
+  const loading = useSelector(selectLoader);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -89,6 +93,8 @@ const RegisterForm = () => {
         </Label>
         <Button type="submit">Add contact</Button>
       </form>
+      {loading && <Loader />}
+      {error && <div>Ooops, something went wrong.. Try a bit later</div>}
     </Container>
   );
 };
