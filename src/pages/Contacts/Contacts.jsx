@@ -1,22 +1,30 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectFilteredName } from 'redux/contacts/selectors';
-// import { deleteContact } from 'redux/contacts/contactsSlice';
+import { useEffect } from 'react';
+import { routes } from 'helpers/routes';
+import WithAuthRedirect from 'HOC/WithAuthRedirect';
+
+import {
+  selectContacts,
+  selectError,
+  selectFilteredName,
+  selectLoader,
+} from 'redux/contacts/selectors';
+
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import { ContactForm, Filter, Notification, Section } from 'components';
+import { getContacts, delContacts } from 'redux/contacts/operations';
+import { ContactForm, Filter, Loader, Notification, Section } from 'components';
 import { Button } from 'components/ContactForm/ContactForm.styled';
 
 import { List, Item, Text } from './Contacts.styled';
-import { useEffect } from 'react';
-import { getContacts, delContacts } from 'redux/contacts/operations';
 import { Container } from 'common/common.styled';
 
 const ContactsPage = () => {
   const contacts = useSelector(selectContacts);
   const filteredName = useSelector(selectFilteredName);
-  // const error = useSelector(selectError);
-  // const loading = useSelector(selectLoader);
+  const error = useSelector(selectError);
+  const loading = useSelector(selectLoader);
 
   const dispatch = useDispatch();
 
@@ -66,11 +74,11 @@ const ContactsPage = () => {
           <Notification message="There isn't such a contact..." />
         )}
       </Section>
-      {/* {loading && <Loader themeNorm={normalizedTheme} />}
-      {error && <div>Ooops, something went wrong.. Try a bit later</div>} */}
+      {loading && <Loader />}
+      {error && <div>Ooops, something went wrong.. Try a bit later</div>}
       <ToastContainer autoClose={3000} />
     </Container>
   );
 };
 
-export default ContactsPage;
+export default WithAuthRedirect(ContactsPage, routes.LOGIN);
