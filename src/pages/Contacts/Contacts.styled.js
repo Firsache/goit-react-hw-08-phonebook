@@ -18,3 +18,8 @@ export const Item = styled.li`
 export const Text = styled.p`
   font-size: ${p => p.theme.fontSizes.m};
 `;
+
+export const ButtonsContainer = styled.div`
+  display: flex;
+  gap: ${p => p.theme.space[4]}px;
+`;
