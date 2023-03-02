@@ -1,7 +1,12 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
+
 import { routes } from 'helpers/routes';
 import WithAuthRedirect from 'HOC/WithAuthRedirect';
+import { getContacts, delContacts } from 'redux/contacts/operations';
+
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 import {
   selectContacts,
@@ -11,10 +16,6 @@ import {
   selectLoader,
 } from 'redux/contacts/selectors';
 
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
-import { getContacts, delContacts } from 'redux/contacts/operations';
 import {
   ContactForm,
   Filter,
@@ -23,6 +24,7 @@ import {
   Notification,
   Section,
 } from 'components';
+
 import {
   Button,
   ButtonSecondary,
