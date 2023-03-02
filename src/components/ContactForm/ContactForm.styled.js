@@ -79,21 +79,6 @@ export const Button = styled.button`
     color: ${p => p.theme.colors.text};
     transform: translateY(-2px);
   }
-
-  /* .secondary {
-    background-color: ${p => p.theme.colors.white};
-    color: ${p => p.theme.colors.black};
-    border: ${p => p.theme.space[1]}px solid ${p => p.theme.colors.accent};
-    transition: background-color ${p => p.theme.transition},
-      color ${p => p.theme.transition}, transform ${p => p.theme.transition};
-
-    &:hover,
-    &:focus {
-      background-color: ${p => p.theme.colors.accent};
-      color: ${p => p.theme.colors.white};
-      transform: translateY(-2px);
-    }
-  } */
 `;
 export const ButtonSecondary = styled.button`
   padding: ${p => p.theme.space[3]}px ${p => p.theme.space[2]}px;
