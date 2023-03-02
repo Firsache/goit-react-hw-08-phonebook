@@ -51,10 +51,10 @@ const ContactsPage = () => {
         {(contacts.length > 1 || filteredName) && <Filter />}
         {Boolean(filteredContacts.length) && (
           <List>
-            {filteredContacts.map(({ id, name, phone }) => (
+            {filteredContacts.map(({ id, name, number }) => (
               <Item key={id}>
                 <Text>
-                  {name}: <span>{phone}</span>
+                  {name}: <span>{number}</span>
                 </Text>
                 <Button
                   onClick={() => {
