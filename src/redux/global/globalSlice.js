@@ -4,17 +4,25 @@ import {
   getContacts,
   addContacts,
   delContacts,
+  editContactOperation,
 } from 'redux/contacts/operations';
 
-import { register, logIn, logOut } from 'redux/auth/auth-operations';
+import {
+  register,
+  logIn,
+  logOut,
+  getCurrentUser,
+} from 'redux/auth/auth-operations';
 
 const extraActions = [
   getContacts,
   addContacts,
   delContacts,
+  editContactOperation,
   register,
   logIn,
   logOut,
+  getCurrentUser,
 ];
 const getActions = type => extraActions.map(action => action[type]);
 
