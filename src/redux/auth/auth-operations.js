@@ -51,5 +51,16 @@ export const logOut = createAsyncThunk(
   }
 );
 
+export const getCurrentUser = createAsyncThunk(
+  'auth/getCurrentUser',
+  async (_, { rejectWithValue }) => {
+    try {
+      const { data } = await axios.get('/users/current');
+      return data;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
 // Lou1
 // FLS_001@mail.com
