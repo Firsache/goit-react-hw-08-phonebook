@@ -17,7 +17,7 @@ export const Navigation = styled.nav`
   gap: ${p => p.theme.space[5]}px;
   color: ${p => p.theme.colors.black};
 
-  font-size: ${p => p.theme.fontSizes.m};
+  font-size: 20px;
   a {
     padding: ${p => p.theme.space[2]}px 0;
   }
