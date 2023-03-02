@@ -1,7 +1,11 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-import { BsEnvelope, BsKey } from 'react-icons/bs';
+import { useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 
+import { BsEnvelope, BsKey } from 'react-icons/bs';
+import { routes } from 'helpers/routes';
+
+import { selectedIsLoggedIn } from 'redux/auth/selectors';
 import { logIn } from 'redux/auth/auth-operations';
 import { Container } from 'common/common.styled';
 import {
@@ -13,9 +17,16 @@ import {
 
 const SignInForm = () => {
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectedIsLoggedIn);
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    navigate(routes.CONTACTS);
+  }, [isLoggedIn, navigate]);
 
   const handleInputChange = evt => {
     const { name, value } = evt.target;
