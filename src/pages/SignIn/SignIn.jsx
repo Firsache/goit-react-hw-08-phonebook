@@ -5,7 +5,9 @@ import { useNavigate } from 'react-router-dom';
 import { BsEnvelope, BsKey } from 'react-icons/bs';
 import { routes } from 'helpers/routes';
 
+import { Loader } from 'components';
 import { selectedIsLoggedIn } from 'redux/auth/selectors';
+import { selectError, selectLoader } from 'redux/contacts/selectors';
 import { logIn } from 'redux/auth/auth-operations';
 import { Container } from 'common/common.styled';
 import {
@@ -18,6 +20,8 @@ import {
 const SignInForm = () => {
   const dispatch = useDispatch();
   const isLoggedIn = useSelector(selectedIsLoggedIn);
+  const error = useSelector(selectError);
+  const loading = useSelector(selectLoader);
   const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -70,6 +74,8 @@ const SignInForm = () => {
         </Label>
         <Button type="submit">Add contact</Button>
       </form>
+      {loading && <Loader />}
+      {error && <div>Ooops, something went wrong.. Try a bit later</div>}
     </Container>
   );
 };
