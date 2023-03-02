@@ -93,8 +93,8 @@ export const ButtonSecondary = styled.button`
   line-height: ${p => p.theme.lineHeights.body}px;
   text-align: center;
 
-  background-color: ${p => p.theme.colors.white};
-  color: ${p => p.theme.colors.black};
+  background-color: transparent;
+  color: ${p => p.theme.colors.text};
   border-radius: ${p => p.theme.space[2]}px;
   border: ${p => p.theme.space[1]}px solid ${p => p.theme.colors.accent};
   outline: none;
