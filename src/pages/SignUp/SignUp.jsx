@@ -1,8 +1,12 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { BsEnvelope, BsPersonPlus, BsKey } from 'react-icons/bs';
 
+import { routes } from 'helpers/routes';
+import { selectedIsLoggedIn } from 'redux/auth/selectors';
 import { register } from 'redux/auth/auth-operations';
+
 import { Container } from 'common/common.styled';
 import {
   Button,
@@ -16,6 +20,13 @@ const RegisterForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  const isLoggedIn = useSelector(selectedIsLoggedIn);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!isLoggedIn) return;
+    navigate(routes.CONTACTS);
+  }, [isLoggedIn, navigate]);
 
   const handleInputChange = evt => {
     const { name, value } = evt.target;
