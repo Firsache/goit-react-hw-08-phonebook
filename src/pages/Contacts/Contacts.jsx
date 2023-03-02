@@ -5,6 +5,7 @@ import WithAuthRedirect from 'HOC/WithAuthRedirect';
 
 import {
   selectContacts,
+  selectEditModal,
   selectError,
   selectFilteredName,
   selectLoader,
@@ -14,15 +15,24 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { getContacts, delContacts } from 'redux/contacts/operations';
-import { ContactForm, Filter, Loader, Notification, Section } from 'components';
+import {
+  ContactForm,
+  Filter,
+  Loader,
+  ModalEdit,
+  Notification,
+  Section,
+} from 'components';
 import { Button } from 'components/ContactForm/ContactForm.styled';
 
 import { List, Item, Text } from './Contacts.styled';
 import { Container } from 'common/common.styled';
+import { setEditModal } from 'redux/contacts/contactsSlice';
 
 const ContactsPage = () => {
   const contacts = useSelector(selectContacts);
   const filteredName = useSelector(selectFilteredName);
+  const editModal = useSelector(selectEditModal);
   const error = useSelector(selectError);
   const loading = useSelector(selectLoader);
 
@@ -41,6 +51,9 @@ const ContactsPage = () => {
       c.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
+  const toggleModal = () => {
+    dispatch(setEditModal());
+  };
 
   const filteredContacts = getFilteredContacts(contacts, filteredName);
 
@@ -56,6 +69,13 @@ const ContactsPage = () => {
                 <Text>
                   {name}: <span>{number}</span>
                 </Text>
+                <Button
+                  onClick={() => {
+                    toggleModal();
+                  }}
+                >
+                  Edit
+                </Button>
                 <Button
                   onClick={() => {
                     deleteSelectedContact(id);
@@ -77,6 +97,7 @@ const ContactsPage = () => {
       {loading && <Loader />}
       {error && <div>Ooops, something went wrong.. Try a bit later</div>}
       <ToastContainer autoClose={3000} />
+      {editModal && <ModalEdit />}
     </Container>
   );
 };
