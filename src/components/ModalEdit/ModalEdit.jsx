@@ -1,41 +1,90 @@
-import { Input, Label, Span } from 'components/ContactForm/ContactForm.styled';
-// import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { createPortal } from 'react-dom';
 
-import { BsTelephonePlus } from 'react-icons/bs';
-import { Backdrop, Modal } from './ModalEdit.styled';
+import { BsPersonPlus, BsTelephonePlus, BsX } from 'react-icons/bs';
+import {
+  FormComponent,
+  Input,
+  Label,
+  Span,
+  Button,
+} from 'components/ContactForm/ContactForm.styled';
+import { useEffect, useState } from 'react';
+
+import { setEditModal } from 'redux/contacts/contactsSlice';
+import { selectEditContact } from 'redux/contacts/selectors';
+import { editContactOperation } from 'redux/contacts/operations';
+import { Backdrop, Modal, CloseBtn } from './ModalEdit.styled';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export const ModalEdit = ({ name, number }) => {
-  //   useEffect(() => {
-  //     function handleEscapeClick(evt) {
-  //       if (evt.code === 'Escape') {
-  //         onClose();
-  //       }
-  //     }
-  //     window.addEventListener('keydown', handleEscapeClick);
-  //     return () => {
-  //       window.removeEventListener('keydown', handleEscapeClick);
-  //     };
-  //   }, [onClose]);
+export const ModalEdit = () => {
+  const editContactId = useSelector(selectEditContact);
+  const dispatch = useDispatch();
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
 
-  const onClose = e => {};
+  useEffect(() => {
+    function handleEscapeClick(evt) {
+      if (evt.code === 'Escape') {
+        dispatch(setEditModal());
+      }
+    }
+    window.addEventListener('keydown', handleEscapeClick);
+    return () => {
+      window.removeEventListener('keydown', handleEscapeClick);
+    };
+  }, [dispatch]);
 
   const handleBackdropClick = evt => {
     if (evt.target === evt.currentTarget) {
-      //   onClose();
+      dispatch(setEditModal());
+    }
+  };
+  const onCloseBtnClick = () => {
+    dispatch(setEditModal());
+  };
+
+  const handleEscapeClick = evt => {
+    if (evt.code === 'Escape') {
+      dispatch(setEditModal());
     }
   };
 
-  const handleInputChange = e => {};
+  const handleInputChange = evt => {
+    const { name, value } = evt.target;
 
-  return (
-    (
-      <Backdrop onClick={handleBackdropClick}>
-        <Modal>
-          <p>Name: {name}</p>
+    if (name === 'name') setName(value);
+    if (name === 'number') setNumber(value);
+  };
+
+  const handleSubmit = evt => {
+    evt.preventDefault();
+    const user = { name, number };
+    dispatch(editContactOperation({ id: editContactId, user }));
+    setName('');
+    setNumber('');
+  };
+
+  return createPortal(
+    <Backdrop onClick={handleBackdropClick}>
+      <Modal onKeyDown={handleEscapeClick}>
+        <FormComponent onSubmit={handleSubmit}>
           <Label>
-            <Span>Edit Number</Span>
+            <Span>Edit name</Span>
+            <BsPersonPlus size={15} className="icon" />
+            <Input
+              type="text"
+              name="name"
+              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+              required
+              value={name}
+              onChange={handleInputChange}
+            />
+          </Label>
+          <Label>
+            <Span>Edit number</Span>
             <BsTelephonePlus size={15} className="icon" />
             <Input
               type="tel"
@@ -47,10 +96,13 @@ export const ModalEdit = ({ name, number }) => {
               onChange={handleInputChange}
             />
           </Label>
-        </Modal>
-        <button onClick={onClose}>close</button>
-      </Backdrop>
-    ),
+          <Button type="submit">Edit contact</Button>
+        </FormComponent>
+        <CloseBtn onClick={onCloseBtnClick}>
+          <BsX size={15} />
+        </CloseBtn>
+      </Modal>
+    </Backdrop>,
     modalRoot
   );
 };
