@@ -33,11 +33,13 @@ export const getContacts = createAsyncThunk(
 
 export const addContacts = createAsyncThunk(
   'contacts/postContact',
-  async (contact, { rejectWithValue }) => {
+  async (contact, { getState, rejectWithValue }) => {
     try {
+      const state = getState();
+      token.set(state.auth.token);
+
       const { data } = await axios.post('/contacts', contact);
-      token.set(data.token);
-      console.log(data);
+
       return data;
     } catch (error) {
       return rejectWithValue(error.message);
@@ -47,11 +49,13 @@ export const addContacts = createAsyncThunk(
 
 export const delContacts = createAsyncThunk(
   'contacts/deleteContact',
-  async (contactId, { rejectWithValue }) => {
+  async (contactId, { getState, rejectWithValue }) => {
     try {
-      const { data } = await axios.delete(`/contacts/${contactId}`);
-      console.log(data.token);
-      token.set(data.token);
+      const state = getState();
+      token.set(state.auth.token);
+
+      await axios.delete(`/contacts/${contactId}`);
+
       return contactId;
     } catch (error) {
       return rejectWithValue(error.message);
