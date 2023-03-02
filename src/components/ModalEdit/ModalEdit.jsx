@@ -99,7 +99,7 @@ export const ModalEdit = () => {
           <Button type="submit">Edit contact</Button>
         </FormComponent>
         <CloseBtn onClick={onCloseBtnClick}>
-          <BsX size={15} />
+          <BsX size={25} />
         </CloseBtn>
       </Modal>
     </Backdrop>,
