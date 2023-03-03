@@ -13,19 +13,30 @@ export const HeaderContainer = styled.div`
   padding: ${p => p.theme.space[4]}px;
   display: flex;
   align-items: center;
-  gap: ${p => p.theme.space[6]}px;
+  gap: ${p => p.theme.space[4]}px;
 
-  min-width: 400px;
-  max-width: 1200px;
+  min-width: 250px;
+  max-width: 767px;
+
+  @media screen and (min-width: 768px) {
+    min-width: 400px;
+    max-width: 1200px;
+    gap: ${p => p.theme.space[6]}px;
+  }
 `;
 
 export const Navigation = styled.nav`
   margin-left: auto;
   display: flex;
-  gap: ${p => p.theme.space[5]}px;
+  gap: ${p => p.theme.space[4]}px;
   color: ${p => p.theme.colors.black};
 
-  font-size: 20px;
+  font-size: ${p => p.theme.fontSizes.m};
+
+  @media screen and (min-width: 768px) {
+    gap: ${p => p.theme.space[5]}px;
+    font-size: 20px;
+  }
   a {
     padding: ${p => p.theme.space[2]}px 0;
   }
