@@ -65,10 +65,11 @@ export const delContacts = createAsyncThunk(
 
 export const editContactOperation = createAsyncThunk(
   'contacts/editContact',
-  async ({ id, user }, { getState, rejectWithValue }) => {
+  async ({ id, ...user }, { getState, rejectWithValue }) => {
     try {
       const state = getState();
       token.set(state.auth.token);
+
       const { data } = await axios.patch(`/contacts/${id}`, user);
       return data;
     } catch (error) {
