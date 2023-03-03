@@ -1,6 +1,6 @@
 export const ParticlesConfig = {
   fullScreen: {
-    zIndex: 1,
+    zIndex: -1,
   },
   particles: {
     color: {
@@ -44,7 +44,7 @@ export const ParticlesConfig = {
       move: true,
       animation: {
         enable: true,
-        speed: 60,
+        speed: 20,
       },
     },
     tilt: {
