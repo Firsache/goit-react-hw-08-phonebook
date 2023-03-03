@@ -30,7 +30,7 @@ export const Title = styled.h2`
   text-shadow: 6px 6px 6px ${p => p.theme.colors.black};
   text-align: center;
 
-  @media screen and (min-width: 768px) {
+  @media screen and (min-width: 550px) {
     font-size: ${p => p.theme.fontSizes.l};
   }
 `;
