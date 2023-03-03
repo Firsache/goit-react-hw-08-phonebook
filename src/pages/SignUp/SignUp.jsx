@@ -92,7 +92,7 @@ const RegisterForm = () => {
               onChange={handleInputChange}
             />
           </Label>
-          <Button type="submit">Add contact</Button>
+          <Button type="submit">Sign Up</Button>
         </form>
       </Section>
       {loading && <Loader />}
