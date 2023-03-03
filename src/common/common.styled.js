@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   margin: ${p => p.theme.space[5]}px ${p => p.theme.space[4]}px;
-  padding: ${p => p.theme.space[4]}px ${p => p.theme.space[3]}px;
+  padding: ${p => p.theme.space[4]}px;
   position: relative;
 
   min-width: 250px;
@@ -11,7 +11,7 @@ export const Container = styled.div`
   box-shadow: 6px 6px 4px 0px ${p => p.theme.colors.shadow},
     -4px -4px 4px ${p => p.theme.colors.shadow};
   @media screen and (min-width: 480px) {
-    padding: ${p => p.theme.space[5]}px ${p => p.theme.space[4]}px;
+    padding: ${p => p.theme.space[5]}px;
   }
   @media screen and (min-width: 768px) {
     margin: ${p => p.theme.space[5]}px auto;
