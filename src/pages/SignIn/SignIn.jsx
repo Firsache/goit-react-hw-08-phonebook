@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { BsEnvelope, BsKey } from 'react-icons/bs';
 import { routes } from 'helpers/routes';
 
-import { Loader } from 'components';
+import { Loader, Section } from 'components';
 import { selectedIsLoggedIn } from 'redux/auth/selectors';
 import { selectError, selectLoader } from 'redux/contacts/selectors';
 import { logIn } from 'redux/auth/auth-operations';
@@ -49,31 +49,34 @@ const SignInForm = () => {
 
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
-        <Label>
-          <Span>Email</Span>
-          <BsEnvelope size={15} className="icon" />
-          <Input
-            type="email"
-            name="email"
-            required
-            value={email}
-            onChange={handleInputChange}
-          />
-        </Label>
-        <Label>
-          <Span>Password</Span>
-          <BsKey size={15} className="icon" />
-          <Input
-            type="password"
-            name="password"
-            required
-            value={password}
-            onChange={handleInputChange}
-          />
-        </Label>
-        <Button type="submit">Add contact</Button>
-      </form>
+      <Section title="Sign In">
+        <form onSubmit={handleSubmit}>
+          <Label>
+            <Span>Email</Span>
+            <BsEnvelope size={15} className="icon" />
+            <Input
+              type="email"
+              name="email"
+              required
+              value={email}
+              onChange={handleInputChange}
+            />
+          </Label>
+          <Label>
+            <Span>Password</Span>
+            <BsKey size={15} className="icon" />
+            <Input
+              type="password"
+              name="password"
+              required
+              value={password}
+              onChange={handleInputChange}
+            />
+          </Label>
+          <Button type="submit">Add contact</Button>
+        </form>
+      </Section>
+
       {loading && <Loader />}
       {error && <div>Ooops, something went wrong.. Try a bit later</div>}
     </Container>
