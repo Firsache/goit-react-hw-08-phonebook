@@ -28,7 +28,7 @@ export const Span = styled.span`
 export const Input = styled.input`
   padding: ${p => p.theme.space[2]}px;
   padding-left: 30px;
-  width: 250px;
+  min-width: 180px;
 
   color: ${p => p.theme.colors.text};
   border: ${p => p.theme.space[1]}px solid ${p => p.theme.colors.text};
@@ -48,6 +48,9 @@ export const Input = styled.input`
     border-color: ${p => p.theme.colors.accent};
     outline-color: ${p => p.theme.colors.accent};
     background-color: transparent;
+  }
+  @media screen and (min-width: 480px) {
+    width: 250px;
   }
 `;
 
