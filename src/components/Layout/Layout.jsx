@@ -1,19 +1,21 @@
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
 import { BsGithub } from 'react-icons/bs';
+import { useMediaQuery } from 'react-responsive';
 
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from 'styles/GlobalStyles/globalStyles.styled';
 
 import { selectThemeTitle } from 'redux/global/selectors';
 import { theme } from 'styles/theme';
-import { Header } from 'components';
+import { Header, ParticleConfetti } from 'components';
 import { colors } from 'styles/colors';
 import { Section, Footer } from './Layout.styled';
 
 export const Layout = () => {
   const themeTitle = useSelector(selectThemeTitle);
   const normalizedTheme = { ...theme, ...colors[themeTitle] };
+  const isDesktop = useMediaQuery({ maxWidth: 767 });
 
   const url = 'https://github.com/Firsache';
 
@@ -28,6 +30,7 @@ export const Layout = () => {
             <BsGithub size={22} />
           </a>
         </Footer>
+        {(true || isDesktop) && <ParticleConfetti />}
       </Section>
       <GlobalStyles />
     </ThemeProvider>
