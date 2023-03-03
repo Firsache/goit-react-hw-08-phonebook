@@ -56,8 +56,8 @@ const ContactsPage = () => {
       c.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
-  const toggleModal = contactId => {
-    dispatch(setEditContact(contactId));
+  const toggleModal = contactUser => {
+    dispatch(setEditContact(contactUser));
     dispatch(setEditModal());
   };
 
@@ -79,7 +79,7 @@ const ContactsPage = () => {
                 <ButtonsContainer>
                   <ButtonSecondary
                     onClick={() => {
-                      toggleModal(id);
+                      toggleModal({ id, name, number });
                     }}
                   >
                     Edit
