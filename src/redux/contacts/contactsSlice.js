@@ -41,8 +41,9 @@ const contactsSlice = createSlice({
         );
       })
       .addCase(editContactOperation.fulfilled, (state, { payload }) => {
-        const newUser = { name: payload.name, number: payload.number };
-        state.contacts = [...state.contacts, newUser];
+        state.contacts = state.contacts.map(c =>
+          c.id === payload.id ? payload : c
+        );
       });
   },
 });
