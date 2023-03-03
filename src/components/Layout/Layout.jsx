@@ -1,24 +1,34 @@
 import { useSelector } from 'react-redux';
 import { Outlet } from 'react-router-dom';
+import { BsGithub } from 'react-icons/bs';
 
 import { ThemeProvider } from 'styled-components';
 import { GlobalStyles } from 'styles/GlobalStyles/globalStyles.styled';
 
 import { selectThemeTitle } from 'redux/global/selectors';
 import { theme } from 'styles/theme';
-import { Box, Header } from 'components';
+import { Header } from 'components';
 import { colors } from 'styles/colors';
+import { Section, Footer } from './Layout.styled';
 
 export const Layout = () => {
   const themeTitle = useSelector(selectThemeTitle);
   const normalizedTheme = { ...theme, ...colors[themeTitle] };
 
+  const url = 'https://github.com/Firsache';
+
   return (
     <ThemeProvider theme={normalizedTheme}>
-      <Box as="section">
+      <Section>
         <Header normalizedTheme={normalizedTheme} />
         <Outlet />
-      </Box>
+        <Footer>
+          2023
+          <a href={url} rel="noopener noreferrer" target="_blank">
+            <BsGithub size={22} />
+          </a>
+        </Footer>
+      </Section>
       <GlobalStyles />
     </ThemeProvider>
   );
