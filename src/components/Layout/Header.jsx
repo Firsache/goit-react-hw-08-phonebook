@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { MdContactPhone } from 'react-icons/md';
+import { useMediaQuery } from 'react-responsive';
 
 import { selectedIsLoggedIn } from 'redux/auth/selectors';
 import { routes } from 'helpers/routes';
@@ -11,13 +12,14 @@ import { HeaderContainer, Navigation, LinkStyled } from './Header.styled';
 
 export const Header = ({ normalizedTheme }) => {
   const isLoggedIn = useSelector(selectedIsLoggedIn);
+  const isMobile = useMediaQuery({ maxWidth: 480 });
 
   return (
     <Box bg={normalizedTheme.colors.accent} as="header">
       <HeaderContainer>
         <LinkStyled to={routes.HOME}>
           <MdContactPhone size={35} />
-          <Title>Phonebook</Title>
+          {!isMobile && <Title>Phonebook</Title>}
         </LinkStyled>
 
         <Navigation>
