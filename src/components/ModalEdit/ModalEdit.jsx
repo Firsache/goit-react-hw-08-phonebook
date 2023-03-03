@@ -16,6 +16,7 @@ import {
   Span,
   Button,
 } from 'components/ContactForm/ContactForm.styled';
+import { Section } from 'components';
 
 const modalRoot = document.querySelector('#modal-root');
 
@@ -76,35 +77,37 @@ export const ModalEdit = () => {
   return createPortal(
     <Backdrop onClick={handleBackdropClick}>
       <Modal onKeyDown={handleEscapeClick}>
-        <FormComponent onSubmit={handleSubmit}>
-          <Label>
-            <Span>Edit name</Span>
-            <BsPersonPlus size={15} className="icon" />
-            <Input
-              type="text"
-              name="name"
-              pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
-              title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
-              required
-              value={name}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Label>
-            <Span>Edit number</Span>
-            <BsTelephonePlus size={15} className="icon" />
-            <Input
-              type="tel"
-              name="number"
-              pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
-              title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
-              required
-              value={number}
-              onChange={handleInputChange}
-            />
-          </Label>
-          <Button type="submit">Edit contact</Button>
-        </FormComponent>
+        <Section titlePosition="end" title="Edit the contact">
+          <FormComponent onSubmit={handleSubmit}>
+            <Label>
+              <Span>Edit name</Span>
+              <BsPersonPlus size={15} className="icon" />
+              <Input
+                type="text"
+                name="name"
+                pattern="^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$"
+                title="Name may contain only letters, apostrophe, dash and spaces. For example Adrian, Jacob Mercer, Charles de Batz de Castelmore d'Artagnan"
+                required
+                value={name}
+                onChange={handleInputChange}
+              />
+            </Label>
+            <Label>
+              <Span>Edit number</Span>
+              <BsTelephonePlus size={15} className="icon" />
+              <Input
+                type="tel"
+                name="number"
+                pattern="\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}"
+                title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
+                required
+                value={number}
+                onChange={handleInputChange}
+              />
+            </Label>
+            <Button type="submit">Edit contact</Button>
+          </FormComponent>
+        </Section>
         <CloseBtn onClick={onCloseBtnClick}>
           <BsX size={25} />
         </CloseBtn>
