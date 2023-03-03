@@ -23,7 +23,7 @@ export const Layout = () => {
         <Header normalizedTheme={normalizedTheme} />
         <Outlet />
         <Footer>
-          2023
+          &#169; 2023 - Phonebook
           <a href={url} rel="noopener noreferrer" target="_blank">
             <BsGithub size={22} />
           </a>
