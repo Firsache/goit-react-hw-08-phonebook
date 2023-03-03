@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { BsEnvelope, BsPersonPlus, BsKey } from 'react-icons/bs';
 
-import { Loader } from 'components';
+import { Loader, Section } from 'components';
 import { routes } from 'helpers/routes';
 import { selectedIsLoggedIn } from 'redux/auth/selectors';
 import { selectError, selectLoader } from 'redux/contacts/selectors';
@@ -51,48 +51,50 @@ const RegisterForm = () => {
 
   return (
     <Container>
-      <form onSubmit={handleSubmit}>
-        <Label>
-          <Span>Name</Span>
-          <BsPersonPlus size={15} className="icon" />
-          <Input
-            type="text"
-            name="name"
-            minLength={3}
-            maxLength={20}
-            required
-            value={name}
-            onChange={handleInputChange}
-          />
-        </Label>
-        <Label>
-          <Span>Email</Span>
-          <BsEnvelope size={15} className="icon" />
-          <Input
-            type="email"
-            name="email"
-            minLength={3}
-            maxLength={30}
-            required
-            value={email}
-            onChange={handleInputChange}
-          />
-        </Label>
-        <Label>
-          <Span>Password</Span>
-          <BsKey size={15} className="icon" />
-          <Input
-            type="password"
-            name="password"
-            minLength={7}
-            maxLength={20}
-            required
-            value={password}
-            onChange={handleInputChange}
-          />
-        </Label>
-        <Button type="submit">Add contact</Button>
-      </form>
+      <Section title="Sign Up">
+        <form onSubmit={handleSubmit}>
+          <Label>
+            <Span>Name</Span>
+            <BsPersonPlus size={15} className="icon" />
+            <Input
+              type="text"
+              name="name"
+              minLength={3}
+              maxLength={20}
+              required
+              value={name}
+              onChange={handleInputChange}
+            />
+          </Label>
+          <Label>
+            <Span>Email</Span>
+            <BsEnvelope size={15} className="icon" />
+            <Input
+              type="email"
+              name="email"
+              minLength={3}
+              maxLength={30}
+              required
+              value={email}
+              onChange={handleInputChange}
+            />
+          </Label>
+          <Label>
+            <Span>Password</Span>
+            <BsKey size={15} className="icon" />
+            <Input
+              type="password"
+              name="password"
+              minLength={7}
+              maxLength={20}
+              required
+              value={password}
+              onChange={handleInputChange}
+            />
+          </Label>
+          <Button type="submit">Add contact</Button>
+        </form>
+      </Section>
       {loading && <Loader />}
       {error && <div>Ooops, something went wrong.. Try a bit later</div>}
     </Container>
