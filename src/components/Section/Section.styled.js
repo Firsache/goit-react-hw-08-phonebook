@@ -10,7 +10,7 @@ export const Wrapper = styled.section`
 `;
 
 export const Title = styled.h2`
-  padding-bottom: ${p => p.theme.space[3]}px;
+  padding-bottom: 10px;
   font-weight: ${p => p.theme.fontWeights.bold};
   font-size: 26px;
 
