@@ -9,11 +9,5 @@ export const ParticleConfetti = () => {
     await loadFull(engine);
   }, []);
 
-  return (
-    <Particles
-      className="particle"
-      options={ParticlesConfig}
-      init={particlesInit}
-    />
-  );
+  return <Particles options={ParticlesConfig} init={particlesInit} />;
 };
