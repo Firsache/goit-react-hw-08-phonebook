@@ -20,10 +20,15 @@ import {
 const modalRoot = document.querySelector('#modal-root');
 
 export const ModalEdit = () => {
-  const editContactId = useSelector(selectEditContact);
+  const editContact = useSelector(selectEditContact);
   const dispatch = useDispatch();
   const [name, setName] = useState('');
   const [number, setNumber] = useState('');
+
+  useEffect(() => {
+    setName(editContact.name);
+    setNumber(editContact.number);
+  }, [editContact.name, editContact.number]);
 
   useEffect(() => {
     function handleEscapeClick(evt) {
@@ -61,8 +66,8 @@ export const ModalEdit = () => {
 
   const handleSubmit = evt => {
     evt.preventDefault();
-    const user = { name, number };
-    dispatch(editContactOperation({ id: editContactId, user }));
+    const user = { name, number, id: editContact.id };
+    dispatch(editContactOperation(user));
     setName('');
     setNumber('');
   };
