@@ -73,7 +73,7 @@ const SignInForm = () => {
               onChange={handleInputChange}
             />
           </Label>
-          <Button type="submit">Add contact</Button>
+          <Button type="submit">Sign In</Button>
         </form>
       </Section>
 
