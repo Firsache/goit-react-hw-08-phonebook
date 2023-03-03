@@ -68,6 +68,7 @@ export const ModalEdit = () => {
     evt.preventDefault();
     const user = { name, number, id: editContact.id };
     dispatch(editContactOperation(user));
+    dispatch(setEditModal());
     setName('');
     setNumber('');
   };
