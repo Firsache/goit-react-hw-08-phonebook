@@ -9,6 +9,7 @@ import { getCurrentUser } from 'redux/auth/auth-operations';
 const HomePage = lazy(() => import('pages/Homepage/Homepage'));
 const ContactsPage = lazy(() => import('pages/Contacts/Contacts'));
 const SignUpFormPage = lazy(() => import('pages/SignUp/SignUp'));
+// const SignInFormPage = lazy(() => import('components/FormikForm/FormikForm'));
 const SignInFormPage = lazy(() => import('pages/SignIn/SignIn'));
 
 export function App() {
