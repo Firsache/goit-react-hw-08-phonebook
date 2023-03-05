@@ -4,7 +4,6 @@ import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import { useNavigate } from 'react-router-dom';
 
-// import { BsEnvelope, BsKey } from 'react-icons/bs';
 import { routes } from 'helpers/routes';
 
 import { selectedIsLoggedIn } from 'redux/auth/selectors';
