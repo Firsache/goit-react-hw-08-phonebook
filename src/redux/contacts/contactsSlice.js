@@ -11,6 +11,7 @@ const initialContactsState = {
   filteredName: '',
   showModal: false,
   editContact: null,
+  isDeleting: false,
 };
 
 const contactsSlice = createSlice({
@@ -35,10 +36,17 @@ const contactsSlice = createSlice({
       .addCase(addContacts.fulfilled, (state, { payload }) => {
         state.contacts = [...state.contacts, payload];
       })
+      .addCase(delContacts.pending, state => {
+        state.isDeleting = true;
+      })
       .addCase(delContacts.fulfilled, (state, { payload }) => {
         state.contacts = state.contacts.filter(
           contact => contact.id !== payload
         );
+        state.isDeleting = false;
+      })
+      .addCase(delContacts.rejected, state => {
+        state.isDeleting = false;
       })
       .addCase(editContactOperation.fulfilled, (state, { payload }) => {
         state.contacts = state.contacts.map(c =>
