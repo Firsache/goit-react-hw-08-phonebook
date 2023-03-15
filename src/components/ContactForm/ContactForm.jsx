@@ -1,14 +1,14 @@
 import { useDispatch, useSelector } from 'react-redux';
 
 import { toast } from 'react-toastify';
-import { Formik, Form } from 'formik';
+import { Formik } from 'formik';
 import * as Yup from 'yup';
 
 import { addContacts } from 'redux/contacts/operations';
 import { selectContacts } from 'redux/contacts/selectors';
 
 import { Section } from 'components/Section/Section';
-import { Button } from './ContactForm.styled';
+import { Button, FormikForm } from './ContactForm.styled';
 import { TextField } from 'components/FormikForm/TextField';
 
 export function ContactForm() {
@@ -27,12 +27,18 @@ export function ContactForm() {
     name: Yup.string()
       .min(3, 'Must be more than 7 characters')
       .max(20, 'Must be 20 characters or less')
-      // .pattern("^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$")
+      .matches(
+        /^[a-zA-Zа-яА-Я]+(([' -][a-zA-Zа-яА-Я ])?[a-zA-Zа-яА-Я]*)*$/,
+        'Enter proper name'
+      )
       .required('Required'),
     number: Yup.string()
       .min(7, 'Must be more than 7 characters')
       .max(20, 'Must be 20 characters or less')
-      // .pattern('+?d{1,4}?[-.s]?(?d{1,3}?)?[-.s]?d{1,4}[-.s]?d{1,4}[-.s]?d{1,9}')
+      .matches(
+        /\+?\d{1,4}?[-.\s]?\(?\d{1,3}?\)?[-.\s]?\d{1,4}[-.\s]?\d{1,4}[-.\s]?\d{1,9}/,
+        'Enter valid number'
+      )
       .required('Required'),
   });
   const onSubmit = (values, { resetForm }) => {
@@ -48,7 +54,6 @@ export function ContactForm() {
       });
       return;
     }
-    // dispatch(addContacts({ name: name.trim(), number }));
     dispatch(addContacts(values));
     resetForm();
   };
@@ -60,12 +65,12 @@ export function ContactForm() {
         validationSchema={validationSchema}
         onSubmit={onSubmit}
       >
-        <Form>
+        <FormikForm>
           {config.map(({ label, type, name }) => (
             <TextField key={name} label={label} type={type} name={name} />
           ))}
           <Button type="submit">Add contact</Button>
-        </Form>
+        </FormikForm>
       </Formik>
     </Section>
   );
