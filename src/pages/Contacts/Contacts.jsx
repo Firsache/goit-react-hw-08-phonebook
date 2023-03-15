@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
 import { routes } from 'helpers/routes';
 import WithAuthRedirect from 'HOC/WithAuthRedirect';
@@ -13,6 +13,7 @@ import {
   selectEditModal,
   selectError,
   selectFilteredName,
+  selectIsDeleting,
   selectLoader,
 } from 'redux/contacts/selectors';
 
@@ -20,6 +21,7 @@ import {
   ContactForm,
   Filter,
   Loader,
+  LoaderDel,
   ModalEdit,
   Notification,
   Section,
@@ -40,14 +42,17 @@ const ContactsPage = () => {
   const editModal = useSelector(selectEditModal);
   const error = useSelector(selectError);
   const loading = useSelector(selectLoader);
+  const loadingDel = useSelector(selectIsDeleting);
 
   const dispatch = useDispatch();
+  const delId = useRef(null);
 
   useEffect(() => {
     dispatch(getContacts());
   }, [dispatch]);
 
   const deleteSelectedContact = contactId => {
+    delId.current = contactId;
     dispatch(delContacts(contactId));
   };
 
@@ -89,7 +94,11 @@ const ContactsPage = () => {
                       deleteSelectedContact(id);
                     }}
                   >
-                    Delete
+                    {loadingDel && id === delId.current ? (
+                      <LoaderDel />
+                    ) : (
+                      'Delete'
+                    )}
                   </Button>
                 </ButtonsContainer>
               </Item>
